@@ -1,0 +1,238 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+/* Custom smooth glassmorphism utilities */
+@layer components {
+  .glass-panel {
+    background: rgba(13, 21, 39, 0.72);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-panel-amber {
+    background: rgba(245, 158, 11, 0.06);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    box-shadow: 0 15px 35px rgba(245, 158, 11, 0.08), inset 0 1px 0 rgba(245, 158, 11, 0.3);
+  }
+
+  .glass-panel-cyan {
+    background: rgba(6, 182, 212, 0.06);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(6, 182, 212, 0.25);
+    box-shadow: 0 15px 35px rgba(6, 182, 212, 0.08), inset 0 1px 0 rgba(6, 182, 212, 0.3);
+  }
+
+  .glass-card {
+    background: rgba(14, 23, 46, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glass-card:hover {
+    border-color: rgba(245, 158, 11, 0.4);
+    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.12);
+  }
+
+  .hud-chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+}
+
+/* Custom sleek scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050811;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #f59e0b;
+}
+
+/* Lenis smooth scroll recommended base */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   OFFICIAL RAILWAY POSSESSION CIRCULAR (FORM T/351) PRINT STYLES
+   ========================================================================== */
+@media print {
+  /* Hide all UI chrome, navigation, headers, and background decor */
+  header,
+  footer,
+  nav,
+  #exploded-section,
+  #scorecard-section,
+  #active-role-workspace > div > div:not(:first-child),
+  .print\:hidden,
+  button,
+  ::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* Reset body and page styling for immaculate paper print */
+  html, body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 11pt !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .pt-16 {
+    padding-top: 0 !important;
+  }
+
+  /* Full-bleed high-contrast print container */
+  .print-possession-order {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 2px solid #000000 !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 24px !important;
+    border-radius: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+  .print-possession-order * {
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  .print-possession-order table {
+    border: 1px solid #000000 !important;
+    width: 100% !important;
+  }
+
+  .print-possession-order th,
+  .print-possession-order td {
+    border: 1px solid #000000 !important;
+    color: #000000 !important;
+    padding: 6px 8px !important;
+  }
+
+  .print-possession-order thead tr {
+    background: #f1f5f9 !important;
+  }
+
+  @page {
+    margin: 1.5cm;
+    size: A4 portrait;
+  }
+}
+
+@media print {
+  /* Hide interactive control room UI, telemetry stage, navbar, and sliders */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Isolate only the Form T/351 container */
+  #printable-t351-circular,
+  #printable-t351-circular * {
+    visibility: visible;
+  }
+
+  #printable-t351-circular {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 2px solid #000000 !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+  }
+
+  /* Force clean black-on-white text for printing */
+  #printable-t351-circular table,
+  #printable-t351-circular th,
+  #printable-t351-circular td {
+    border-color: #000000 !important;
+    color: #000000 !important;
+    background: transparent !important;
+  }
+
+  #printable-t351-circular [class*="bg-slate-"],
+  #printable-t351-circular [class*="bg-amber-"] {
+    background: #f8fafc !important;
+    border-color: #000000 !important;
+  }
+
+  #printable-t351-circular [class*="text-"] {
+    color: #000000 !important;
+  }
+
+  /* Header Crest / Logo */
+  .header-logo, svg.national-crest {
+    width: 48px !important;
+    height: 48px !important;
+    margin-bottom: 8px !important;
+    display: inline-block !important;
+    position: static !important;
+    opacity: 1 !important;
+  }
+
+  /* Faint Background Watermark */
+  .watermark-emblem, svg[data-watermark="true"] {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 220px !important;
+    height: 220px !important;
+    opacity: 0.04 !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+}
